@@ -1,0 +1,50 @@
+import Bowman from '../characters/Bowman';
+import Daemon from '../characters/Daemon';
+import Magician from '../characters/Magician';
+import Swordsman from '../characters/Swordsman';
+import Undead from '../characters/Undead';
+import Vampire from '../characters/Vampire';
+import { characterGenerator, generateTeam } from '../generators';
+
+test('Throw error after create new Character class', () => {
+  expect(() => {
+    const result = new Character();
+    return result;
+  }).toThrow(Error);
+});
+
+test('Create correct parameters after create character', () => {
+  expect(new Daemon(2)).toEqual({
+    level: 2, type: 'daemon', attack: 10, defence: 10, health: 100,
+  });
+});
+
+test.each([
+  [Bowman, 'bowman'],
+  [Bowman, 'bowman'],
+  [Swordsman, 'swordsman'],
+  [Swordsman, 'swordsman'],
+  [Magician, 'magician'],
+  [Magician, 'magician'],
+  [Undead, 'undead'],
+  [Undead, 'undead'],
+  [Swordsman, 'swordsman'],
+  [Swordsman, 'swordsman'],
+  [Vampire, 'vampire'],
+  [Vampire, 'vampire'],
+])('Create new characters infinitely', (character, expected) => {
+  const result = characterGenerator([character, character, character], 3).next().value;
+  expect(result.type).toEqual(expected);
+});
+
+test('Function generateTeam correct return quantity of characters', () => {
+  const result = generateTeam([Bowman, Swordsman, Magician], 3, 4);
+  expect(result.characters.length).toEqual(4);
+});
+
+test('Function generateTeam correct return max level of characters', () => {
+  const result = generateTeam([Bowman, Bowman, Bowman], 3, 4);
+  if (result.characters[0].level >= 1 && result.characters[0].level <= 3) {
+    expect(result.characters[0].type).toEqual('bowman');
+  }
+});
