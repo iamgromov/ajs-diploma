@@ -4,6 +4,7 @@ import Magician from '../characters/Magician';
 import Swordsman from '../characters/Swordsman';
 import Undead from '../characters/Undead';
 import Vampire from '../characters/Vampire';
+import Character from '../Character';
 import { characterGenerator, generateTeam } from '../generators';
 
 test('Throw error after create new Character class', () => {

@@ -1,10 +1,3 @@
-import Bowman from './characters/Bowman';
-import Daemon from './characters/Daemon';
-import Magician from './characters/Magician';
-import Swordsman from './characters/Swordsman';
-import Undead from './characters/Undead';
-import Vampire from './characters/Vampire';
-
 /**
  * Класс, представляющий персонажей команды
  *
@@ -19,15 +12,32 @@ import Vampire from './characters/Vampire';
  * ```
  * */
 export default class Team {
-  constructor(characters) {
-    this.characters = characters;
+  constructor() {
+    this.characters = new Set();
   }
 
-  static playerHeroes() {
-    return [Magician, Bowman, Swordsman];
+  add(character) {
+    if (this.characters.has(character)) {
+      throw new Error('Такой персонаж уже eсть в команде');
+    }
+    this.characters.add(character);
   }
 
-  static enemyHeroes() {
-    return [Daemon, Undead, Vampire];
+  addAll(characters) {
+    this.characters = new Set([...this.characters, ...characters]);
+  }
+
+  delete(character) {
+    this.characters.delete(character);
+  }
+
+  toArray() {
+    return [...this.characters];
+  }
+
+  * [Symbol.iterator]() {
+    for (const character of this.characters) {
+      yield character;
+    }
   }
 }
