@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable default-case */
+
 import Bowman from './characters/Bowman';
 import Daemon from './characters/Daemon';
 import Magician from './characters/Magician';
