@@ -16,7 +16,7 @@ test('Throw error after create new Character class', () => {
 
 test('Create correct parameters after create character', () => {
   expect(new Daemon(2)).toEqual({
-    level: 2, type: 'daemon', attack: 10, defence: 10, health: 100,
+    level: 2, type: 'daemon', attack: 10, defence: 10, health: 100, moveRange: 1, attackRange: 4, 
   });
 });
 
@@ -40,12 +40,12 @@ test.each([
 
 test('Function generateTeam correct return quantity of characters', () => {
   const result = generateTeam([Bowman, Swordsman, Magician], 3, 4);
-  expect(result.characters.length).toEqual(4);
+  expect(result.length).toEqual(4);
 });
 
 test('Function generateTeam correct return max level of characters', () => {
   const result = generateTeam([Bowman, Bowman, Bowman], 3, 4);
-  if (result.characters[0].level >= 1 && result.characters[0].level <= 3) {
-    expect(result.characters[0].type).toEqual('bowman');
+  if (result[0].level >= 1 && result[0].level <= 3) {
+    expect(result[0].type).toEqual('bowman');
   }
 });

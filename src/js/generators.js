@@ -28,10 +28,10 @@ export function* characterGenerator(allowedTypes, maxLevel) {
  * */
 export function generateTeam(allowedTypes, maxLevel, characterCount) {
   const team = [];
-  const character = characterGenerator(allowedTypes, maxLevel);
+  const characters = characterGenerator(allowedTypes, maxLevel);
 
   while (team.length < characterCount) {
-    team.push(character.next().value);
+    team.push(characters.next().value);
   }
 
   return team;
