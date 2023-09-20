@@ -16,7 +16,7 @@ test('Throw error after create new Character class', () => {
 
 test('Create correct parameters after create character', () => {
   expect(new Daemon(2)).toEqual({
-    level: 2, type: 'daemon', attack: 10, defence: 10, health: 100, moveRange: 1, attackRange: 4, 
+    level: 2, type: 'daemon', attack: 10, defence: 10, health: 100, moveRange: 1, attackRange: 4,
   });
 });
 
